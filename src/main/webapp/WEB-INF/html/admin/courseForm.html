@@ -1,0 +1,36 @@
+<th:block th:fragment="form">
+	<div class="col-md-4">
+	
+		<div class="form-group">
+			<label for="name">Name</label> <input type="text"
+				class="form-control" id="name" placeholder="Name" th:field="*{name}"
+				th:value="*{name}">
+		</div>
+
+		<div class="form-group">
+			<label for="description">Description</label> <input type="text"
+				class="form-control" id="description" placeholder="description"
+				th:field="*{description}" th:value="*{description}">
+		</div>
+		
+		<div class="form-group">
+			<label for="prerequisites">prerequisites</label> <input type="text"
+				class="form-control" id="prerequisites" placeholder="prerequisites"
+				th:field="*{prerequisites}" th:value="*{prerequisites}">
+		</div>
+
+		<div class="form-group">
+			<label for="detailPageLink">detailPageLink</label> <input type="url"
+				class="form-control" id="detailPageLink"
+				placeholder="detailPageLink" th:field="*{detailPageLink}"
+				th:value="*{detailPageLink}">
+		</div>
+
+		<div class="checkbox">
+			<label> <input type="checkbox" th:checked="*{active}"
+				th:field="*{active}" id="active"> Etkin
+			</label>
+		</div>
+
+		<button type="submit" class="btn btn-info" th:type="submit">Submit</button>
+</th:block>

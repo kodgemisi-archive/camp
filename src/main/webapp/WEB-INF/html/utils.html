@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="tr">
+<body>
+
+<th:block th:fragment="menuLink (url, linkText)">
+    <a class="item" th:href="@{${url}}" th:text="${linkText}"
+       th:classappend="${#httpServletRequest.getRequestURI() == #httpServletRequest.getContextPath() + url ? 'active':''}">Link
+        text</a>
+</th:block>
+
+<th:block th:fragment="menuLinkDropdown (menuName, urls, linkTexts)">
+    <div href="#" class="ui simple dropdown item">
+        <th:block th:text="${menuName}">Dropdown</th:block><i class="dropdown icon"></i>
+
+        <div class="menu" th:with="urlList=${#strings.listSplit(urls,',')}">
+            <div class="item"
+                 th:classappend="${#httpServletRequest.getRequestURI() == #httpServletRequest.getContextPath() + url ? 'active':''}"
+                 th:each="text,status : ${#strings.listSplit(linkTexts,',')}"
+                 th:with="url=${urlList[status.index]}"
+                 >
+                <a th:href="@{${url}}" th:text="${text}">Link name</a>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+</body>
+</html>

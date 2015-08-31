@@ -1,0 +1,285 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<th:block th:fragment="content">
+
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <form th:action="@{/basvuru}" th:object="${form}" id="theForm"
+                  class="form-horizontal well"
+                  method="post">
+				
+				<input type="hidden" th:field="*{application.id}" th:value="*{application.id}" /> 
+				
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 col-md-2 control-label">E-postanız</label>
+
+                    <div class="col-lg-10 col-md-10" th:errorclass="has-error" name="student.email">
+                        <input type="email"
+                        		class="form-control floating-label"
+                        		id="email"
+                        		placeholder="E-posta"
+                        		th:field="*{student.email}"
+                        		th:value="*{student.email}"
+                        	/>
+                        <span class="help-block">Ön koşul sınavında verdiğiniz eposta ile aynı olmalı!</span>
+                    	<p th:if="${#fields.hasErrors('student.email')}" th:errors="*{student.email}" class="text-danger"></p>
+                    </div>
+                </div>
+
+                <fieldset>
+                    <legend>Sizi Tanıyalım</legend>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-2 control-label">Cinsiyetiniz</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input type="radio" name="sex" th:field="*{student.sex}" id="sex1" name="sex"
+                                           value="MALE">
+                                    Erkek
+                                </label>
+                            </div>
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input type="radio" name="sex" th:field="*{student.sex}" id="sex2" name="sex"
+                                           value="FEMALE">
+                                    Kadın
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="citizenshipNumber" class="col-lg-2 col-md-2 control-label">Tc Kimlik No</label>
+
+                        <div class="col-lg-10 col-md-10" th:errorclass="has-error" name="student.tckn">
+                            <input type="number"
+                            		th:field="*{student.tckn}"
+                            		th:value="*{student.tckn}"
+									class="form-control floating-label"
+									id="citizenshipNumber"
+									placeholder="Tc Kimlik No"
+									>
+                            <p th:if="${#fields.hasErrors('student.tckn')}" th:errors="*{student.tckn}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstName" class="col-lg-2 col-md-2 control-label">Adınız</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <input type="text" th:field="*{student.name}" th:value="*{student.name}"
+                                   class="form-control floating-label" id="firstName" name="firstName"
+                                   placeholder="Adınız" >
+                            <span class="help-block">Kimlikte yazıldığı gibi (Tc No doğrulaması için).</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName" class="col-lg-2 col-md-2 control-label">Soyadınız</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <input type="text" th:field="*{student.surname}" th:value="*{student.surname}"
+                                   class="form-control floating-label" id="lastName" name="lastName"
+                                   placeholder="Soyadınız" >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthDate" class="col-lg-2 col-md-2 control-label">Doğum yılınız</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <input type="number" max="2000" min="1935" class="form-control floating-label"
+                                   th:field="*{student.birthDate}" th:value="*{student.birthDate}"
+                                   id="birthDate" name="birthDate" placeholder="Doğum yılınız" >
+                            <span class="help-block">Yalnızca yıl: örneğin 1992.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-2 col-md-2 control-label">Çalışma durumunuz</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input type="radio" th:field="*{application.workStatus}" name="workStatus"
+                                           id="workStatus1" name="workStatus"
+                                           value="WORKING">
+                                    Çalışıyorum
+                                </label>
+                            </div>
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input type="radio" th:field="*{application.workStatus}" name="workStatus"
+                                           id="workStatus2" name="workStatus"
+                                           value="STUDENT">
+                                    Öğrenciyim
+                                </label>
+                            </div>
+                            <div class="radio radio-primary">
+                                <label>
+                                    <input type="radio" th:field="*{application.workStatus}" name="workStatus"
+                                           id="workStatus2" name="workStatus"
+                                           value="NOT_WORKING">
+                                    Çalışmıyorum (ve öğrenci değilim)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-lg-2 col-md-2 control-label"></label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <div class="togglebutton">
+                                <label>
+                                    <input th:value="*{application.officer}" th:checked="*{application.officer}"
+                                           type="checkbox" name="isOfficer"
+                                           id="isOfficer"> Kamu çalışanıyım
+                                </label>
+                            </div>
+                            <span class="help-block">Kamu çalışanlarına öncelik verilir, ancak kurumunuzdan doğrulama yapılır.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="workDetails" class="col-lg-2 col-md-2 control-label">Çalışma detaylarınız</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <textarea class="form-control floating-label" rows="3" id="workDetails" name="workDetails"
+                                      th:field="*{application.workDetails}" th:value="*{application.workDetails}"
+                                      placeholder="Çalışıyorsanız kurumunuzu, öğrenciyseniz üniversitenizi belirtiniz."
+                                      ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="corporation" class="col-lg-2 col-md-2 control-label"></label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <textarea class="form-control floating-label" rows="3" id="corporation" name="corporation"
+                                      th:field="*{application.corporation}" th:value="*{application.corporation}"
+                                      placeholder="Çalışıyorsanız birim ve görevinizi, öğrenciyseniz bölüm ve sınıfınızı belirtiniz."
+                                      ></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="englishLevel" class="col-lg-2 col-md-2 control-label">İngilizce bilginiz</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <div id="englishLevelSlider" class="slider shor"></div>
+                            <input type="number" id="englishLevel" name="englishLevel"
+                                   th:field="*{application.englishLevel}" th:value="*{application.englishLevel}"
+                                   min="0" max="10">
+                            <span class="help-block">1'den 10'a kadar değerlendiriniz.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="github" class="col-lg-2 col-md-2 control-label">Github</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <input type="text" class="form-control floating-label" id="github" name="github"
+                                   th:field="*{application.githubLink}" th:value="*{application.githubLink}"
+                                   placeholder="(varsa) Github adresiniz">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Kurs Seçimleri</legend>
+
+                    <table class="table table-striped table-hover ">
+                        <thead>
+                        <tr>
+                            <th>Kurs Adı</th>
+                            <th>Ön Koşul</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="course : ${courses}">
+                            <td><a th:text="${course.name}" target="_blank" th:href="${course.detailPageLink}">Course Link</a></td>
+                            <td th:text="${course.prerequisites}">
+                                <ul>
+                                    <li>Okuduğunu anlayabilecek düzeyde İngilizce bilgisi</li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="form-group">
+                        <label for="firstChoice" class="col-lg-2 col-md-2 control-label">1. Tercih</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <select class="form-control" id="firstChoice" th:field="*{preferredCourseIds[0]}">
+                            	<option value="">Seciniz</option>
+                                <option th:each="course : ${courses}"
+                                        th:value="${course.id}"
+                                        th:text="${course.name}"
+                                        >
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="secondChoice" class="col-lg-2 col-md-2 control-label">2. Tercih</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <select class="form-control" id="secondChoice" th:field="*{preferredCourseIds[1]}">
+                                <option value="">Seciniz</option>
+                                <option th:each="course : ${courses}"
+                                        th:value="${course.id}"
+                                        th:text="${course.name}"
+                                        >
+                                </option>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thirdChoice" class="col-lg-2 col-md-2 control-label">3. Tercih</label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <select class="form-control" id="thirdChoice" th:field="*{preferredCourseIds[2]}">
+                                <option value="">Seciniz</option>
+                                <option th:each="course : ${courses}"
+                                        th:value="${course.id}"
+                                        th:text="${course.name}"
+                                        >
+                                </option>
+                            </select>
+                            <span class="help-block">Üç tercih yapmak zorunda değilsiniz, tek tercih de yapabilirsiniz.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="needAccommodation" class="col-lg-2 col-md-2 control-label"></label>
+
+                        <div class="col-lg-10 col-md-10">
+                            <div class="togglebutton">
+                                <label>
+                                    <input type="checkbox" th:value="*{application.needAccomodation}"
+                                           th:checked="*{application.needAccomodation}"
+                                           th:field="*{application.needAccomodation}" id="needAccommodation" />
+                                    Yurtta konaklamak istiyorum
+                                </label>
+                            </div>
+                            <span class="help-block">Yurtta konaklamak ücretlidir.</span>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="form-group">
+                    <div class="col-lg-10 col-md-10 col-lg-offset-2">
+                        <button type="submit" id="applyBtn" class="btn btn-primary pull-right">Başvur</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</th:block>

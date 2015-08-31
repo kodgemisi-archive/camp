@@ -1,0 +1,9 @@
+<th:block th:fragment="content">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 well">
+			<h1>Admin Create Form</h1>
+			<p th:text="${message}" />
+			<form action="#" method="post" th:action="@{/admins}" th:object="${admin}" th:include="admin/adminForm :: form"></form>
+		</div>
+	</div>
+</th:block>

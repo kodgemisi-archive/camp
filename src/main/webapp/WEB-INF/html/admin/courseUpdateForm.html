@@ -1,0 +1,12 @@
+<th:block th:fragment="content">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2 well">
+			<h1>Course Update Form</h1>
+			<p th:text="${message}" />
+			<form action="#" th:action="@{/courses/__${course.id}__}" th:object="${course}" method="post">
+				<input type="hidden" th:field="*{id}" th:value="*{id}">
+				<th:block th:include="admin/courseForm :: form" />
+			</form>
+		</div>
+	</div>
+</th:block>

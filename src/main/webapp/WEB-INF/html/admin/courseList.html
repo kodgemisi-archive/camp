@@ -1,0 +1,42 @@
+<th:block th:fragment="content">
+
+	<div class="container">
+		<div class="text-center">
+			<h1>Courses</h1>
+		</div>
+		<br>
+
+		<table class="table table-hover">
+			<thead>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Prerequisites</th>
+				<th>Detail Page Link</th>
+				<th>Active</th>
+
+			</thead>
+			<tbody>
+				<tr th:each="course : ${courses}" th:object="${course}">
+
+					<td th:text="*{id}"></td>
+
+					<td th:text="*{name}"></td>
+					
+					<td th:text="*{description}"></td>
+
+					<td th:text="*{prerequisites}"></td>
+
+					<td th:text="*{detailPageLink}"></td>
+
+					<td th:text="*{active}"></td>
+
+					<td>
+						<a th:href="@{/courses/__*{id}__}" class="btn btn-primary">Edit</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</th:block>

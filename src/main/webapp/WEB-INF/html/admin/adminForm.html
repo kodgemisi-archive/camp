@@ -1,0 +1,61 @@
+<th:block th:fragment="form">
+	<div class="col-md-4">
+
+		<div class="form-group">
+			<label for="InputLkdNo">LKD NO</label> <input type="text"
+				class="form-control" id="lkdNo" placeholder="LKD No"
+				th:field="*{lkdNo}" th:value="${admin.lkdNo}">
+		</div>
+
+		<div class="form-group">
+			<label for="InputName">Name</label> <input type="text"
+				class="form-control" id="name" placeholder="Name" th:field="*{name}"
+				th:value="${admin.name}">
+		</div>
+		<div class="form-group">
+			<label for="InputSurname">Surname</label> <input type="text"
+				class="form-control" id="surname" placeholder="Surname"
+				th:field="*{surname}" th:value="${admin.surname}">
+		</div>
+
+		<div class="form-group">
+			<label for="InputEmail">Email address</label> <input type="email"
+				class="form-control" id="email" placeholder="Email"
+				th:field="*{email}" th:value="${admin.email}">
+		</div>
+		<div class="form-group">
+			<label for="InputPassword1">Password</label> <input type="password"
+				class="form-control" id="password" placeholder="Password"
+				th:field="*{password}" th:value="${admin.password}">
+		</div>
+
+		<div class="form-group">
+			<label for="InputPassword2">Password Again</label> <input
+				type="password" class="form-control" id="passwordAgain"
+				name="passwordAgain" placeholder="Password Again">
+		</div>
+
+
+		<div class="form-group">
+			<label for="InputBirthdate">BirthDate</label> <input type="number"
+				class="form-control" id="birthDate" placeholder="BirthDate"
+				th:field="*{birthDate}" th:value="${admin.birthDate}">
+		</div>
+
+
+		<div class="form-group">
+			<label for="InputLkdNo">Phone</label> <input type="text"
+				class="form-control" id="phone" placeholder="phone"
+				th:field="*{phone}" th:value="${admin.phone}">
+		</div>
+
+		<div class="form-group">
+			<label for="InputTckn">TC</label> <input type="text"
+				class="form-control" id="tckn" placeholder="TC KN"
+				th:field="*{tckn}" th:value="${admin.tckn}">
+		</div>
+		<button type="submit" class="btn btn-info" th:type="submit">Submit</button>
+
+	</div>
+
+</th:block>

@@ -1,0 +1,45 @@
+<th:block th:fragment="content">
+
+	<div class="container">
+		<div class="text-center">
+			<h1>Instructors</h1>
+		</div>
+		<br>
+
+		<table class="table table-hover">
+			<thead>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Birth Date</th>
+				<th>TC ID</th>
+				<th>E-mail</th>
+				<th>Phone</th>
+
+			</thead>
+			<tbody>
+				<tr th:each="instructor : ${instructors}" th:object="${instructor}">
+
+					<td th:text="*{id}"></td>
+
+					<td th:text="*{name}"></td>
+
+					<td th:text="*{surname}"></td>
+
+					<td th:text="*{birthDate}"></td>
+
+					<td th:text="*{tckn}"></td>
+
+					<td th:text="*{email}"></td>
+
+					<td th:text="*{phone}"></td>
+
+					<td>
+						<a th:href="@{/instructors/__*{id}__}" class="btn btn-primary">Edit</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</th:block>

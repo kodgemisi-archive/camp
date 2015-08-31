@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="LKD">
+    <link rel="icon" th:href="@{/resources/img/favicon.ico}">
+
+    <title>Kamp Anasayfa</title>
+
+    <link rel="stylesheet" href="//oss.maxcdn.com/semantic-ui/2.0.8/semantic.min.css">
+    <link th:href="@{/resources/css/common.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="ui fixed inverted menu">
+    <div class="ui container">
+        <div href="#" class="header item">
+            <img class="logo" src="http://semantic-ui.com/examples/assets/images/logo.png">
+            Project Name
+        </div>
+        <th:block th:include="utils::menuLink ('/', 'Home')" />
+        <th:block th:include="utils::menuLinkDropdown ('Admin','/admins,/admins/create', 'Admin list,Create admin')" th:with="resourceName=${'/admins'}" />
+        <th:block th:include="utils::menuLinkDropdown ('Instructors','/instructors,/instructors/create', 'Instructor list,Create instructor')" th:with="resourceName=${'/instructors'}" />
+        <th:block th:include="utils::menuLinkDropdown ('Course','/courses,/courses/create', 'Course list,Create course')" th:with="resourceName=${'/courses'}" />
+    </div>
+</div>
+
+<main class="ui main text container" th:include="${view} :: content"></main>
+
+<footer class="ui inverted vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui stackable inverted divided grid">
+            <div class="three wide column">
+                <h4 class="ui inverted header">Group 1</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Link One</a>
+                    <a href="#" class="item">Link Two</a>
+                    <a href="#" class="item">Link Three</a>
+                    <a href="#" class="item">Link Four</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">Group 2</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Link One</a>
+                    <a href="#" class="item">Link Two</a>
+                    <a href="#" class="item">Link Three</a>
+                    <a href="#" class="item">Link Four</a>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui inverted header">Group 3</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Link One</a>
+                    <a href="#" class="item">Link Two</a>
+                    <a href="#" class="item">Link Three</a>
+                    <a href="#" class="item">Link Four</a>
+                </div>
+            </div>
+            <div class="seven wide column">
+                <h4 class="ui inverted header">Footer Header</h4>
+                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <img src="http://semantic-ui.com/examples/assets/images/logo.png" class="ui centered mini image">
+        <div class="ui horizontal inverted small divided link list">
+            <a class="item" href="#">Site Map</a>
+            <a class="item" href="#">Contact Us</a>
+            <a class="item" href="#">Terms and Conditions</a>
+            <a class="item" href="#">Privacy Policy</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

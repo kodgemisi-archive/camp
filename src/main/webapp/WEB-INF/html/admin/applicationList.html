@@ -1,0 +1,48 @@
+<th:block th:fragment="content">
+
+	<div class="container">
+		<div class="text-center">
+			<h1>Applications</h1>
+		</div>
+		<br>
+
+		<table class="table table-hover">
+			<thead>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Surname</th>
+				<th>Birth Date</th>
+				<th>TC ID</th>
+				<th>E-mail</th>
+				<th>Phone</th>
+				<th>Validated</th>
+
+			</thead>
+			<tbody>
+				<tr th:each="application : ${applications}" th:object="${application}">
+
+					<td th:text="*{id}"></td>
+
+					<td th:text="*{owner.name}"></td>
+
+					<td th:text="*{owner.surname}"></td>
+
+					<td th:text="*{owner.birthDate}"></td>
+
+					<td th:text="*{owner.tckn}"></td>
+
+					<td th:text="*{owner.email}"></td>
+
+					<td th:text="*{owner.phone}"></td>
+
+					<td th:text="*{validated}"></td>
+
+					<td>
+						<a th:href="@{/applications/update/__*{id}__}" class="btn btn-primary">Edit</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</th:block>
