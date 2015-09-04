@@ -35,8 +35,17 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/instructors/**").hasAnyAuthority("ADMIN", "INSTRUCTOR")
 			.antMatchers("/instructors/create/**").hasAuthority("ADMIN")
 			.anyRequest().authenticated()
-			.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.and().formLogin();
+			.and()
+				.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+
+				// setting default path again (/login?logout) just to enable `permitAll`
+				// explicitly. See http://stackoverflow.com/q/20532737/878361
+				.logoutSuccessUrl("/login?logout").permitAll()
+			.and()
+				.formLogin()
+				.loginPage("/login")
+				.permitAll();
 			/* @formatter:on */
 	}
 
