@@ -61,3 +61,6 @@ hs_err_pid*
 # properties files
 *-dev.properties
 *-prod.properties
+
+# linux temp files
+*~
