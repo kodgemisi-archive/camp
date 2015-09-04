@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -37,7 +36,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest().authenticated()
 			.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 
 				// setting default path again (/login?logout) just to enable `permitAll`
 				// explicitly. See http://stackoverflow.com/q/20532737/878361

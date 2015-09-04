@@ -29,6 +29,13 @@
         <th:block th:include="utils::menuLinkDropdown ('Instructors','/instructors,/instructors/create', 'Instructor list,Create instructor')" th:with="resourceName=${'/instructors'}" />
         <th:block th:include="utils::menuLinkDropdown ('Course','/courses,/courses/create', 'Course list,Create course')" th:with="resourceName=${'/courses'}" />
     </div>
+    <div class="right menu">
+        <div class="item">
+            <form action="#" method="post" th:action="@{/logout}">
+                <button type="submit" class="ui button">Logout</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <main class="ui main text container" th:include="${view} :: content"></main>
