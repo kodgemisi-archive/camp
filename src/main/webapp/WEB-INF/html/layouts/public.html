@@ -1,55 +1,80 @@
 <!DOCTYPE html>
-<html lang="tr">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="LKD">
-    <link rel="icon" th:href="@{/resources/img/favicon.ico}">
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="LKD">
+  <link rel="icon" th:href="@{/resources/img/favicon.ico}">
 
-    <title>Kamp Anasayfa</title>
+  <title>Kamp Anasayfa</title>
 
-    <link src="//oss.maxcdn.com/semantic-ui/2.0.8/semantic.min.css">
-    <link th:href="@{/resources/css/common.css}" rel="stylesheet">
-    
-    <link th:href="@{/resources/css/common.css}" rel="stylesheet">
+  <link rel="stylesheet" href="//oss.maxcdn.com/semantic-ui/2.0.8/semantic.min.css">
+  <link th:href="@{/resources/css/common.css}" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
-  
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Linux Yaz Kampı</a>
+<body>
+
+<div class="ui fixed inverted menu">
+  <div class="ui container">
+    <div href="#" class="header item">
+      <img class="logo" src="http://semantic-ui.com/examples/assets/images/logo.png">
+      Project Name
+    </div>
+    <th:block th:include="utils::menuLink ('/basvuru', 'Başvuru')" />
+  </div>
+</div>
+
+<main class="ui main text container" th:include="${view} :: content"></main>
+
+<footer class="ui inverted vertical footer segment">
+  <div class="ui center aligned container">
+    <div class="ui stackable inverted divided grid">
+      <div class="three wide column">
+        <h4 class="ui inverted header">Group 1</h4>
+        <div class="ui inverted link list">
+          <a href="#" class="item">Link One</a>
+          <a href="#" class="item">Link Two</a>
+          <a href="#" class="item">Link Three</a>
+          <a href="#" class="item">Link Four</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-
-          	
-          </ul>
-        </div><!--/.nav-collapse -->
       </div>
-    </nav>
-    
-	<main class="container" th:include="${view} :: content"></main>
-
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+      <div class="three wide column">
+        <h4 class="ui inverted header">Group 2</h4>
+        <div class="ui inverted link list">
+          <a href="#" class="item">Link One</a>
+          <a href="#" class="item">Link Two</a>
+          <a href="#" class="item">Link Three</a>
+          <a href="#" class="item">Link Four</a>
+        </div>
       </div>
-    </footer>
+      <div class="three wide column">
+        <h4 class="ui inverted header">Group 3</h4>
+        <div class="ui inverted link list">
+          <a href="#" class="item">Link One</a>
+          <a href="#" class="item">Link Two</a>
+          <a href="#" class="item">Link Three</a>
+          <a href="#" class="item">Link Four</a>
+        </div>
+      </div>
+      <div class="seven wide column">
+        <h4 class="ui inverted header">Footer Header</h4>
+        <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+      </div>
+    </div>
+    <div class="ui inverted section divider"></div>
+    <img src="http://semantic-ui.com/examples/assets/images/logo.png" class="ui centered mini image">
+    <div class="ui horizontal inverted small divided link list">
+      <a class="item" href="#">Site Map</a>
+      <a class="item" href="#">Contact Us</a>
+      <a class="item" href="#">Terms and Conditions</a>
+      <a class="item" href="#">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="//oss.maxcdn.com/semantic-ui/2.0.8/semantic.min.js"></script>
-  </body>
+</body>
 </html>
