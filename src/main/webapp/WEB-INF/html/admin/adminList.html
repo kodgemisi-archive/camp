@@ -6,7 +6,7 @@
 		</div>
 		<br>
 
-		<table class="table table-hover">
+		<table class="ui celled striped table">
 			<thead>
 				<th>ID</th>
 				<th>Name</th>
@@ -16,6 +16,7 @@
 				<th>E-mail</th>
 				<th>Phone</th>
 				<th>LKD ID</th>
+				<th>Actions</th>
 
 			</thead>
 			<tbody>
@@ -38,7 +39,12 @@
 					<td th:text="*{lkdNo}"></td>
 
 					<td>
-						<a th:href="@{/admins/update/__*{id}__}" class="btn btn-primary">Edit</a>
+                        <div class="ui vertical animated button" tabindex="0">
+                            <a th:href="@{/admins/update/__*{id}__}" class="hidden content">Edit</a>
+                            <div class="visible content">
+                                <i class="edit icon"></i>
+                            </div>
+                        </div>
 					</td>
 				</tr>
 			</tbody>

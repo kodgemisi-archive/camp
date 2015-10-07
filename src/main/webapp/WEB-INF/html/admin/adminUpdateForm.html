@@ -3,7 +3,7 @@
 		<div class="col-md-8 col-md-offset-2 well">
 			<h1>Admin Update Form</h1>
 			<p th:text="${message}" />
-			<form action="#" method="post" th:action="@{/admins/__${admin.id}__}" th:object="${admin}">
+			<form class="ui form" action="#" method="post" th:action="@{/admins/__${admin.id}__}" th:object="${admin}">
 				<input type="hidden" th:field="*{id}" th:value="*{id}">
 				<th:block th:include="admin/adminForm :: form" />
 			</form>

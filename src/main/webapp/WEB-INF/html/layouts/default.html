@@ -28,12 +28,10 @@
         <th:block th:include="utils::menuLinkDropdown ('Admin','/admins,/admins/create', 'Admin list,Create admin')" th:with="resourceName=${'/admins'}" />
         <th:block th:include="utils::menuLinkDropdown ('Instructors','/instructors,/instructors/create', 'Instructor list,Create instructor')" th:with="resourceName=${'/instructors'}" />
         <th:block th:include="utils::menuLinkDropdown ('Course','/courses,/courses/create', 'Course list,Create course')" th:with="resourceName=${'/courses'}" />
-    </div>
-    <div class="right menu">
-        <div class="item">
-            <form action="#" method="post" th:action="@{/logout}">
-                <button type="submit" class="ui button">Logout</button>
-            </form>
+
+        <div class="right menu">
+            <a class="item" onclick="javascript:document.getElementById('logoutForm').submit()">Logout</a>
+            <form id="logoutForm" action="#" method="post" th:action="@{/logout}"></form>
         </div>
     </div>
 </div>
