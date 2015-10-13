@@ -7,12 +7,14 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
 public class Admin extends AbstractUser {
 
+	@NotBlank
 	@Column(nullable = false, unique = true)
 	private String lkdNo;
 

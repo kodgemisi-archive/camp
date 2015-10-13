@@ -22,4 +22,10 @@ public class AdminService extends GenericService<Admin> {
 		return super.create(admin);
 	}
 
+	@Override
+	public Admin update(Admin admin){
+		admin.setPassword(this.passwordEncoder.encode(admin.getPassword()));
+		return super.update(admin);
+	}
+
 }

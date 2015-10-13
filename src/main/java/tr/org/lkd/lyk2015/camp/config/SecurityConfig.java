@@ -25,7 +25,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 
 			// authentication
-			.antMatchers("/basvuru", "/resources/**", "/applications/validate/**").permitAll()
+			.antMatchers("/admins/create","/basvuru", "/resources/**", "/applications/validate/**").permitAll()
 
 			// authorization
 			.antMatchers("/admins/**").hasAuthority("ADMIN")
