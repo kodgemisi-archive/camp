@@ -16,13 +16,16 @@ public class AdminService extends GenericService<Admin> {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Autowired
-	private AdminDao adminDao;
-
 	@Override
 	public Long create(Admin admin) {
 		admin.setPassword(this.passwordEncoder.encode(admin.getPassword()));
 		return super.create(admin);
+	}
+
+	@Override
+	public Admin update(Admin admin){
+		admin.setPassword(this.passwordEncoder.encode(admin.getPassword()));
+		return super.update(admin);
 	}
 
 }

@@ -1,11 +1,9 @@
 package tr.org.lkd.lyk2015.camp.model;
 
 import java.util.Calendar;
+import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 public class AbstractBaseModel {
@@ -17,11 +15,14 @@ public class AbstractBaseModel {
 	@Column(nullable = false)
 	private Boolean deleted = false;
 
-	@Column(nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false, updatable=false)
 	private Calendar creationDate;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar updateDate;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar deletionDate;
 
 	public Long getId() {
@@ -41,7 +42,7 @@ public class AbstractBaseModel {
 	}
 
 	public Calendar getCreationDate() {
-		return this.creationDate;
+		return creationDate;
 	}
 
 	public void setCreationDate(Calendar creationDate) {
@@ -49,7 +50,7 @@ public class AbstractBaseModel {
 	}
 
 	public Calendar getUpdateDate() {
-		return this.updateDate;
+		return updateDate;
 	}
 
 	public void setUpdateDate(Calendar updateDate) {
@@ -57,7 +58,7 @@ public class AbstractBaseModel {
 	}
 
 	public Calendar getDeletionDate() {
-		return this.deletionDate;
+		return deletionDate;
 	}
 
 	public void setDeletionDate(Calendar deletionDate) {

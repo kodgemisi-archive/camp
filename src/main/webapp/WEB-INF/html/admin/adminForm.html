@@ -1,10 +1,15 @@
 <th:block th:fragment="form">
 	<div class="col-md-4">
 
+
+
 		<div class="field">
 			<label for="InputLkdNo">LKD NO</label> <input type="text"
 				 id="lkdNo" placeholder="LKD No"
 				th:field="*{lkdNo}" th:value="${admin.lkdNo}">
+		</div>
+		<div th:if="${#fields.hasErrors('lkdNo')}" class="ui negative message">
+			<p  th:errors="*{lkdNo}"></p>
 		</div>
 
 		<div class="field">
@@ -13,22 +18,36 @@
 				 id="name" placeholder="Name" th:field="*{name}"
 				th:value="${admin.name}">
 		</div>
+        <div th:if="${#fields.hasErrors('name')}" class="ui negative message">
+            <p  th:errors="*{name}"></p>
+        </div>
+
 		<div class="field">
 			<label for="InputSurname">Surname</label> <input type="text"
 				 id="surname" placeholder="Surname"
 				th:field="*{surname}" th:value="${admin.surname}">
 		</div>
+        <div th:if="${#fields.hasErrors('surname')}" class="ui negative message">
+            <p  th:errors="*{surname}"></p>
+        </div>
 
 		<div class="field">
 			<label for="InputEmail">Email address</label> <input type="email"
 				 id="email" placeholder="Email"
 				th:field="*{email}" th:value="${admin.email}">
 		</div>
+        <div th:if="${#fields.hasErrors('email')}" class="ui negative message">
+            <p  th:errors="*{email}"></p>
+        </div>
+
 		<div class="field">
 			<label for="InputPassword1">Password</label> <input type="password"
 				 id="password" placeholder="Password"
 				th:field="*{password}" th:value="${admin.password}">
 		</div>
+        <div th:if="${#fields.hasErrors('password')}" class="ui negative message">
+            <p  th:errors="*{password}"></p>
+        </div>
 
 		<div class="field">
 			<label for="InputPassword2">Password Again</label> <input
@@ -36,26 +55,44 @@
 				name="passwordAgain" placeholder="Password Again">
 		</div>
 
+        <div class="error"th:if="${message} != null" class="ui negative message">
+            <p th:text="${message}" ></p>
+        </div >
 
 		<div class="field">
 			<label for="InputBirthdate">BirthDate</label> <input type="number"
 				 id="birthDate" placeholder="BirthDate"
 				th:field="*{birthDate}" th:value="${admin.birthDate}">
 		</div>
-
+        <div th:if="${#fields.hasErrors('birthDate')}" class="ui negative message">
+            <p  th:errors="*{birthDate}"></p>
+        </div>
 
 		<div class="field">
-			<label for="InputLkdNo">Phone</label> <input type="text"
+			<label for="InputPhoneNo">Phone</label> <input type="text"
 				 id="phone" placeholder="phone"
 				th:field="*{phone}" th:value="${admin.phone}">
 		</div>
+        <div th:if="${#fields.hasErrors('phone')}" class="ui negative message">
+            <p  th:errors="*{phone}"></p>
+        </div>
 
 		<div class="field">
 			<label for="InputTckn">TC</label> <input type="text"
 				 id="tckn" placeholder="TC KN"
 				th:field="*{tckn}" th:value="${admin.tckn}">
 		</div>
+        <div th:if="${#fields.hasErrors('tckn')}" class="ui negative message">
+            <p  th:errors="*{tckn}"></p>
+        </div>
+
 		<button type="submit" class="ui button" th:type="submit">Submit</button>
+
+
+
+
+		</div>
+
 
 	</div>
 

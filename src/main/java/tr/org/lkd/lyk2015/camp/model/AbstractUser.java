@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,10 +14,10 @@ public abstract class AbstractUser extends AbstractBaseModel implements UserDeta
 
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty
+	@NotBlank
 	private String name;
 
-	@NotEmpty
+	@NotBlank
 	private String surname;
 
 	@NotNull
@@ -27,13 +28,15 @@ public abstract class AbstractUser extends AbstractBaseModel implements UserDeta
 	@Column(unique = true)
 	private Long tckn;
 
-	@NotEmpty
+	@NotBlank
 	@Column(unique = true)
 	private String email;
 
+	@NotBlank
 	@Column(nullable = false)
 	private String password;
 
+	@NotBlank
 	@Column(unique = true)
 	private String phone;
 

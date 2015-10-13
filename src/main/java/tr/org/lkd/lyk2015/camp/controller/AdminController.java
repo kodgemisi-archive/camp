@@ -3,66 +3,67 @@ package tr.org.lkd.lyk2015.camp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import tr.org.lkd.lyk2015.camp.model.Admin;
 import tr.org.lkd.lyk2015.camp.service.AdminService;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admins")
 public class AdminController {
 
-	@Autowired
-	private AdminService adminService;
+    @Autowired
+    private AdminService adminService;
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String form(@ModelAttribute Admin admin) {
-		return "admin/adminCreateForm";
-	}
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String listAdmins(Model model) {
+        model.addAttribute("admins", this.adminService.getAll());
+        return "admin/adminList";
+    }
 
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String updateForm(Model model, @PathVariable("id") Long id,
-			@RequestParam(value = "message", required = false) String message) {
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String getAdminCreateForm(@ModelAttribute Admin admin) {
+        return "admin/adminCreateForm";
+    }
 
-		model.addAttribute("admin", this.adminService.getById(id));
-		model.addAttribute("message", message);
-		return "admin/adminUpdateForm";
-	}
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createAdmin(@Valid @ModelAttribute Admin admin, BindingResult result,
+                              @RequestParam("passwordAgain") String passwordAgain, Model model) {
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String create(@ModelAttribute Admin admin, @RequestParam("passwordAgain") String passwordAgain) {
+        if (!passwordAgain.equals(admin.getPassword())) {
+            model.addAttribute("message", "Sifreler uyusmuyor. Lutfen kontrol ediniz.");
+            return "admin/adminCreateForm";
+        }
+        if (result.hasErrors()) {
+            return "admin/adminCreateForm";
+        } else {
+            this.adminService.create(admin);
+            return "redirect:/admins";
+        }
+    }
 
-		if (!passwordAgain.equals(admin.getPassword())) {
-			// TODO error
-		}
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String getAdminUpdateForm(@PathVariable("id") Long id, Model model) {
 
-		this.adminService.create(admin);
-		return "redirect:/admins";
-	}
+        model.addAttribute("admin", this.adminService.getById(id));
+        return "admin/adminUpdateForm";
+    }
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
-	public String update(@ModelAttribute Admin admin, @RequestParam("passwordAgain") String passwordAgain,
-			@PathVariable("id") Long id, Model model) {
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String updateAdmin(@Valid @ModelAttribute Admin admin, BindingResult result,
+                              @RequestParam("passwordAgain") String passwordAgain, @PathVariable("id") Long id, Model model) {
 
-		if (!passwordAgain.equals(admin.getPassword())) {
-			// TODO error
-		}
-
-		this.adminService.update(admin);
-		model.addAttribute("message", "Successful");
-		return "redirect:/admins/update/" + id;
-	}
-
-	@RequestMapping()
-	public String list(Model model) {
-
-		model.addAttribute("admins", this.adminService.getAll());
-
-		return "admin/adminList";
-	}
-
+        if (!passwordAgain.equals(admin.getPassword())) {
+            model.addAttribute("message", "Sifreler uyusmuyor. Lutfen kontrol ediniz.");
+            return "admin/adminUpdateForm";
+        }
+        if (result.hasErrors()) {
+            return "admin/adminUpdateForm";
+        } else {
+            this.adminService.update(admin);
+            return "redirect:/admins";
+        }
+    }
 }
